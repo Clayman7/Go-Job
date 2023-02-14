@@ -3,8 +3,8 @@
     position: absolute;
     width: 500px;
     height: 92px;
-    left: 323px;
-    top: 465px;
+    left: 353px;
+    top: 335px;
     background: #FFF1F1;
     border-radius: 28px;
 }
@@ -13,8 +13,8 @@
     position: absolute;
 width: 222px;
 height: 100px;
-left: 830px;
-top: 465px;
+left: 860px;
+top: 335px;
 background: #06159B;
 font-family: 'Inter';
 font-style: normal;
@@ -22,6 +22,6 @@ font-weight: 400;
 font-size: 33px;
 line-height: 40px;
 border-radius: 28px;
-
+border: none;
 color: #FFF1F1;
 }

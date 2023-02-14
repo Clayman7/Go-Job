@@ -25,6 +25,7 @@ const SearchBar = () => {
         className="input"
         onChange={(e) => handleInputChange(e)}
       />
+ 
       <button type="submit" className="btn" onClick={(e) => handleSubmit(e)}>Ver perfiles</button>
     </div>
   );
