@@ -1,0 +1,18 @@
+.home{ position: absolute;
+width: 1440px;
+height: 685px;
+left: 0px;
+top: 123px;
+background: rgba(11, 10, 10, 0.4);
+ }
+
+ .img {
+    position: absolute;
+width: 1440px;
+height: 685px;
+left: 0px;
+top: 123px;
+
+background: url(.jpg);
+ }
+
