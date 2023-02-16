@@ -2,6 +2,7 @@ import React from "react";
 import { lupa } from "../../assets";
 import Footer from "../Footer/Footer";
 import Navbar from "../navbarPortada/NavBar";
+import Paginated from "../Paginated/Paginated";
 import Reviews from "../Reviews/Reviews";
 // import { Link } from "react-router-dom";
 
@@ -51,6 +52,10 @@ export default function LandingPage() {
 
       <div>
         <Reviews />
+      </div>
+      
+      <div>
+         <Paginated/>
       </div>
 
       <div>
