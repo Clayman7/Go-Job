@@ -3,6 +3,7 @@ import LandingPage from "./components/landingPage/landingPage";
 
 import Navbar from "./components/navbarPortada/NavBar";
 import FormContact from "./components/Form/FormContact";
+import FormCreateUser from "./components/FormCreateUser/FormCreateUser";
 
 // import styles from "./style";
 
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route path="/contact" component={FormContact} />
+          <Route path="/createUser" component={FormCreateUser}  />
         </Switch>
       </BrowserRouter>
       {/* <LandingPage /> */}
