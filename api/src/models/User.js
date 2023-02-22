@@ -52,6 +52,15 @@ const userModel = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    provincia:{
+
+    },
+    localidades:{
+
+    },
+    direcciones:{
+
+    },
     role: {
         type: DataTypes.STRING,
         allowNull: false,
