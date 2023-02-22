@@ -2,14 +2,14 @@
 Es necesario agregar Jobs para poder trabajar con los Users Y Services
 
 ## Post
-post (  http://localhost:3001/job )
+post (  http://localhost:3001/job/create )
 ```
 //Esta ruta es para crear Jobs
 
 body
 {
-    name: "Albañil",
-    description: "Construye casas"
+  "name": "Albañil",
+  "description": "Construye casas"
 }
 
 ```

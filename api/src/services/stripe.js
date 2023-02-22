@@ -22,16 +22,18 @@ async function createSession (priceId){ // se crea una sesion por cada llamada a
     return session  // en sesion viene la url que da stripe para el formulario y se pueda realizar el pago
 }
 
-async function createProduct(name){   //name seria el nombre del usuario, username o ID, que creo el formato de pago
+async function createProduct(name) {//name seria el nombre del usuario, username o ID, que creo el formato de pago
     //creas servicio como Albañileria, Plomeria pero es especifico del usuario
+   
+    const idProduct = await stripe.products.create({
+      name: name      
+    });
+    
+    return idProduct;//nos retorna el objeto completo donde viene el Id del producto para despues añadir precios
 
-   const idProduct = await stripe.products.create({
-        name: name, 
-      });
-      return idProduct  //nos retorna el objeto completo donde viene el Id del producto para despues añadir precios
-}
+  }
 
-//'prod_NO4AgC06G5lhXh' un ID ejemplo que yo cree para hacer pruebas
+  //'prod_NO4AgC06G5lhXh' un ID ejemplo que yo cree para hacer pruebas
 
 async function createPrice(newPrice,idProduct){ // creas el precio para ese servicio de ese usuario
     const idPrice = await stripe.prices.create({
@@ -52,7 +54,7 @@ async function getProductById(idProduct){ // obtenemos la informacion de un prod
 }
 
 async function deleteProduct(idProduct){  //si algun usuario por alguna razon quiere borrar sus datos de los pagos
-    //aqui se borraria su nombre de usuario asociado a ese producto
+    //aqui se borraria ese producto asociado al servicio
     const deleted = await stripe.products.del(
         idProduct
       );   
@@ -69,21 +71,30 @@ async function listProducts(){ //aqui buscamos todos los productos existentes si
       return allProducts
 }
 
+async function findProduct(product_id){
+    const productFinded = stripe.products.list({limit: 1, active: true, ids: [product_id]})
+        return productFinded
+}
+
 async function listPrices(producto_id){ //aqui buscamos todos los precios de un producto
 
-    const prices = await stripe.prices.list({product: producto_id});
+    const prices = await stripe.prices.list({
+        limit:1, 
+        product: producto_id}
+        );
 
       return prices
 }
 
+async function updatePrice(priceId,productPrice){ //aqui actualizamos un precio buscando su id
 
-// const existingPrice = listPrices(producto_id).data.find(price => price.unit_amount === priceInCents);
+    const update = await stripe.prices.update(priceId, { unit_amount: productPrice, currency });
 
-// if (existingPrice) {
-  
-// } else {
- 
-// }
+    return update
+}
+
+
+
 
 module.exports={
     stripe,
@@ -93,7 +104,9 @@ module.exports={
     getProductById,
     deleteProduct,
     listProducts,
-    listPrices
+    listPrices,
+    findProduct,
+    updatePrice
     
 }
 

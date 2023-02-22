@@ -2,8 +2,6 @@ const { Router} = require('express');
 const { auth } = require("../middlewares/auth")
 const router = Router();
 const userHandlers = require("../handlers/userHandler")
-const {createCheckoutHandler, productCreateHandler, priceCreatedHandler} = require("../handlers/stripeHandler")
-
 
 
 
@@ -16,11 +14,11 @@ router.get("/services", auth, userHandlers.getAllService)
 
 router.get("/token", auth, userHandlers.decifrarToken);
 
-
+ 
 /****** POST ****** */
 router.post("/register", userHandlers.createUser);
 router.post("/job", auth, userHandlers.addJob)
-router.post("/service", auth, userHandlers.createServer)
+router.post("/service", auth,userHandlers.createService)
 
 router.post("/login", userHandlers.login)
 router.post("/friend", auth, userHandlers.addFriend)

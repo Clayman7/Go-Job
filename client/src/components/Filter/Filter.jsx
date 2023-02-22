@@ -6,12 +6,12 @@ function Filter () {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getService())
+      //  dispatch(getService())
     }, [dispatch])
 
     function handleClick(e){
         e.preventDefault(e);
-        dispatch(getService())
+       // dispatch(getService())
     }
     return(
         <div>

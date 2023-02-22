@@ -31,18 +31,19 @@ const serviceModel = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    stripepriceId:{
+    priceIdStripe:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
+    },
+    productIdStripe :{
+      type: DataTypes.STRING,
+      allowNull: true
     },
     score:{
       type: DataTypes.INTEGER,
       default: 0
     },
-    // UserId: {
-    //   type: DataTypes.INTEGER
-    // }
-
+  
   
   },{timestamps: false });
 };

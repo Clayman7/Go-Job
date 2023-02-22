@@ -7,7 +7,7 @@ const { PORT } = process.env;
 //force:true - elimina todas la bases de datos, y las vuelve a crear en base a los modelos
 //alter:true - actualiza las tablas de BASE DE DATOS en base a los modelos
 
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
 //conn.sync().then(() => {
     app.listen(PORT, () => {
     //conn.drop();    //ESTO ES PARA ELIMINAR TODAS LAS TABLAS
