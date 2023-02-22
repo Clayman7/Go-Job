@@ -2,6 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createService, getJobs } from "../../redux/actions/actions";
 import NavBar from "../navbarPortada/NavBar";
+import localidades from "../localidades.json"
+
+const localidades2 = localidades.map(element => {
+  return{
+    provincia: element.nombre,
+    localidad: element.ciudades,
+  }
+})
+console.log(localidades)
+console.log(localidades2)
 
 function FormCreateService() {
   // const [input, setInput] = useState({
@@ -26,10 +36,14 @@ function FormCreateService() {
   const [input_2, setInput_2] = useState({
     title: "",
     description: "",
-    location: "",
+    provincia: "",
+    ciudad:"",
     presupuesto: "0",
   });
-
+  
+  useEffect(() =>{
+    console.log(input_2)
+  },[input_2])
   // const changeInput = (e) => {
   //   const name = e.target.name;
   //   const value = e.target.value;
@@ -49,7 +63,6 @@ function FormCreateService() {
     const name = e.target.name;
     const value = e.target.value;
     setInput_2({ ...input_2, [name]: value });
-    console.log(input_2);
   };
 
   const handleSubmit = (e) => {
@@ -59,7 +72,8 @@ function FormCreateService() {
       createService({
         tittle: input_2.title,
         description: input_2.description,
-        location: input_2.location,
+        provincia: input_2.provincia,
+        ciudad: input_2.ciudad,
         presupuesto: input_2.presupuesto,
         jobs: [inputJob],
       })
@@ -67,7 +81,8 @@ function FormCreateService() {
     setInput_2({
       title: "",
       description: "",
-      location: "",
+      provincia: "",
+      ciudad:"",
       presupuesto: "0",
     });
     setInputJob(1);
@@ -161,7 +176,17 @@ function FormCreateService() {
                 >
                   Ingrese lugar de trabajo
                 </label>
-                <input
+                <select
+                value={input_2.provincia}
+                onChange={changeInput_2}
+                name="provincia">
+                  <option  selected  defaultValue>Seleccionar</option>
+                  {localidades?.map((element)=>(
+                    <option value={element.nombre}>{element.nombre}</option>
+                    
+                  ))}
+
+                  
                   type="text"
                   name="location"
                   value={input_2.location}
@@ -170,7 +195,21 @@ function FormCreateService() {
                   placeholder="Ingresa el lugar donde se realizará el trabajo"
                   required="required"
                   data-error="La Descripción es requerido."
-                />
+                  </select>
+                  {input_2.provincia && (
+                  <select 
+                  value={input_2.ciudad}
+                  onChange={changeInput_2}
+                  name="ciudad">
+                  <option  selected  defaultValue>Seleccionar</option>
+                 
+                  {localidades[0].ciudades?.map((element)=>(
+                    <option value={element.nombre}>{element.nombre}</option>
+                  ))}
+                  
+                  </select>
+                  )
+                  }
               </div>
               <div>
                 <label
