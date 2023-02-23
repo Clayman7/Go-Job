@@ -25,9 +25,16 @@ const serviceModel = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      location: {
-        type: DataTypes.TEXT,
+      provincia: {
+        type: DataTypes.STRING,
         allowNull: false,
+      },
+      ciudad: {
+          type: DataTypes.STRING,
+          allowNull: false,
+      },
+      direccion: {
+          type: DataTypes.STRING,
       },
       presupuesto: {
         type: DataTypes.INTEGER,

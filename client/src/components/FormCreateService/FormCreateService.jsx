@@ -4,14 +4,7 @@ import { createService, getJobs } from "../../redux/actions/actions";
 import NavBar from "../navbarPortada/NavBar";
 import localidades from "../localidades.json"
 
-const localidades2 = localidades.map(element => {
-  return{
-    provincia: element.nombre,
-    localidad: element.ciudades,
-  }
-})
 console.log(localidades)
-console.log(localidades2)
 
 function FormCreateService() {
   // const [input, setInput] = useState({
@@ -38,6 +31,7 @@ function FormCreateService() {
     description: "",
     provincia: "",
     ciudad:"",
+    direccion:"",
     presupuesto: "0",
   });
   
@@ -74,6 +68,7 @@ function FormCreateService() {
         description: input_2.description,
         provincia: input_2.provincia,
         ciudad: input_2.ciudad,
+        direccion: input_2.direccion,
         presupuesto: input_2.presupuesto,
         jobs: [inputJob],
       })
@@ -83,12 +78,12 @@ function FormCreateService() {
       description: "",
       provincia: "",
       ciudad:"",
+      direccion:"",
       presupuesto: "0",
     });
     setInputJob(1);
     window.alert("Se creó con exito el servicio");
   };
-
   return (
     <div>
       <div>
@@ -179,37 +174,42 @@ function FormCreateService() {
                 <select
                 value={input_2.provincia}
                 onChange={changeInput_2}
-                name="provincia">
-                  <option  selected  defaultValue>Seleccionar</option>
+                name="provincia"
+                className="mt-2 shadow appearance-none border roun w-full py-2 px-3 text-blue-900 leading-tight focus:outline-none focus:shadow-outline"
+                required="required"
+                data-error="La Descripción es requerido.">
+                  <option disabled selected  defaultValue>Seleccionar</option>
                   {localidades?.map((element)=>(
                     <option value={element.nombre}>{element.nombre}</option>
                     
                   ))}
-
-                  
-                  type="text"
-                  name="location"
-                  value={input_2.location}
-                  onChange={changeInput_2}
-                  className="mt-2 shadow appearance-none border roun w-full py-2 px-3 text-blue-900 leading-tight focus:outline-none focus:shadow-outline"
-                  placeholder="Ingresa el lugar donde se realizará el trabajo"
-                  required="required"
-                  data-error="La Descripción es requerido."
                   </select>
                   {input_2.provincia && (
                   <select 
                   value={input_2.ciudad}
                   onChange={changeInput_2}
-                  name="ciudad">
-                  <option  selected  defaultValue>Seleccionar</option>
-                 
+                  name="ciudad"
+                  className="mt-2 shadow appearance-none border roun w-full py-2 px-3 text-blue-900 leading-tight focus:outline-none focus:shadow-outline"
+                  required="required"
+                  data-error="La Descripción es requerido.">
+                  <option disabled selected  defaultValue>Seleccionar</option>
                   {localidades[0].ciudades?.map((element)=>(
                     <option value={element.nombre}>{element.nombre}</option>
                   ))}
-                  
                   </select>
                   )
                   }
+                  {input_2.ciudad &&(
+                    <input
+                    type="text"
+                    name="direccion"
+                    value={input_2.direccion}
+                    onChange={changeInput_2}
+                    className="mt-2 shadow appearance-none border roun w-full py-2 px-3 text-blue-900 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="direccion del servicio"
+                    required="required"
+                    data-error="La direccion es requerido."/>
+                  )}
               </div>
               <div>
                 <label
